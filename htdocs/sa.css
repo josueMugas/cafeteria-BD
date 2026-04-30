@@ -1,0 +1,117 @@
+/* Paleta de colores y variables */
+:root {
+    --cafe-oscuro: #4b3621;
+    --cafe-medio: #6f4e37;
+    --cafe-claro: #c0a080;
+    --crema: #f5f5dc;
+    --blanco: #ffffff;
+    --gris-suave: #f8f9fa;
+}
+.container{
+    border-radius: 20px;
+    margin-top: 10%;
+    max-width: 500;
+    background-color: var(--crema);
+    background-position: center;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('Imagenes/queque-de-chocolate.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: var(--gris-suave);
+    color: var(--cafe-oscuro);
+    margin: 0;
+    padding: 0;
+}
+
+h2, h1 {
+    text-align: center;
+    color: var(--cafe-medio);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Importante para que el padding no desborde */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cafe-medio);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--cafe-oscuro);
+    transform: scale(1.05);
+}
+
+/* Estilos para las Cards de Productos (clientes.php) */
+.card {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: var(--cafe-medio) !important;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Para que la imagen del queque no se deforme */
+}
+
+/* Ajustes para el Carousel */
+.carousel-item {
+    padding: 20px;
+}
+
+.btn-secondary {
+    background-color: var(--cafe-claro);
+    border: none;
+    color: var(--cafe-oscuro);
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cafe-medio);
+    color: white;
+}
+
+/* Footer o enlaces */
+.btn-link {
+    text-decoration: none;
+    font-weight: 500;
+}
