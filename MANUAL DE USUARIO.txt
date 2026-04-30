@@ -1,0 +1,33 @@
+
+MANUAL DE USUARIO.
+___________________________________________________________________________________
+
+PASO 1.
+
+-DESCARGAR E IMPORTAR LA CARPETA DEL PROYECTO EN (DISCO LOCAL C - XAMPP - HTDOCS).
+
+___________________________________________________________________________________
+
+PASO 2.
+
+-ABRIR EL XAMPP Y INSTALAR LOS PUERTOS PHPMYADMIN Y APACHE.
+___________________________________________________________________________________
+
+PASO 3.
+
+-Importar la base de datos en PHPMyadmin
+___________________________________________________________________________________
+
+PASO 4.
+
+-Abrir un navegador de preferencia
+___________________________________________________________________________________
+
+PASO 5.
+
+-Buscar Localhost y entrar en la pagina
+___________________________________________________________________________________
+
+PASO 6.
+
+-Usarla pagina
