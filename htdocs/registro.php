@@ -1,3 +1,12 @@
+
+<?php
+session_start();
+include("conexion.php");
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    echo "<div class='alert alert-danger text-center fixed-top'>$error</div>";
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +16,7 @@
     <link rel="stylesheet" href="sa.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="max-width: 500px; margin-top: 100px;" >
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <h2 class="text-center mb-4">☕ Nuevo Cliente</h2>
@@ -33,5 +42,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

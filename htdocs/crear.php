@@ -1,5 +1,13 @@
 <?php 
-include("conexion.php"); 
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit();
+}
+
+include "conexion.php";
+
 if($_POST){
     $nom = $_POST['nombre'];
     $pre = $_POST['precio'];
@@ -18,8 +26,10 @@ if($_POST){
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="sa.css">
+    <title>Agregar Producto</title>
 </head>
-<body class="p-5">
+<body class="p-5" style="background-color: var(--cafe-claro);"  >
     <form method="POST" enctype="multipart/form-data" class="card p-4 shadow">
         <h3>Nuevo Producto</h3>
         <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" required>
