@@ -1,6 +1,7 @@
 DELIMITER //
 
--- 1. Recibe usuario, producto y cantidad. Registra el pedido y descuenta el stock.
+-- 1. Recibe usuario, producto y cantidad. Registra el pedido y descuenta el stock (Obsoleto).
+/*
 CREATE PROCEDURE RegistrarPedido(IN p_id_usuario INT, IN p_id_producto INT, IN producto_cantidad INT)
 BEGIN
     INSERT INTO pedidos (id_usuario, id_producto, fecha, cantidad_producto)
@@ -11,7 +12,8 @@ BEGIN
 END //
 
 DELIMITER //
-
+*/
+    
 -- 2. Recibe el ID de un producto y el nuevo precio. Lo actualiza.
 CREATE PROCEDURE ActualizarPrecio(IN p_id_prod INT, IN p_nuevo_precio DECIMAL(10,2))
 BEGIN
@@ -39,4 +41,18 @@ END //
 
 DELIMITER //
 
+-- 5- Recibe los datos de una persona y los guarda en la tabla clientes.
+DELIMITER //
+CREATE PROCEDURE InsertarCliente(c_nom VARCHAR(50), c_ape VARCHAR(50), c_mail VARCHAR(50), c_contra VARCHAR(50), c_dom VARCHAR(50))
+BEGIN
+    INSERT INTO usuarios (nombre, apellido, mail, contraseña, domicilio) 
+    VALUES (c_nom, c_ape, c_mail, c_contra, c_dom);
+
+    INSERT INTO clientes (id_usuario) 
+    VALUES ((SELECT id_usuario FROM usuarios WHERE mail = c_mail));
+
+    INSERT INTO cartera (id_usuario, saldo) 
+    VALUES ((SELECT id_usuario FROM usuarios WHERE mail = c_mail), 0.00);
+END //
+DELIMITER //
 
