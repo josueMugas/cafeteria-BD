@@ -2,16 +2,13 @@
 include("conexion.php");
 session_start();
 
-// Si el carrito no existe o está vacío, lo manejamos de forma amigable
 $carrito_vacio = !isset($_SESSION['carrito']) || empty($_SESSION['carrito']);
 
 $total_carrito = 0;
 $productos_detalle = [];
 
 if (!$carrito_vacio) {
-    // Recorremos el carrito para buscar los datos reales de la base de datos
     foreach ($_SESSION['carrito'] as $id => $cantidad_comprar) {
-        // Usamos el procedimiento almacenado que ya tenías para obtener info del producto
         $stmtProd = mysqli_prepare($conexion, "CALL ObtenerInfoProducto(?)");
         mysqli_stmt_bind_param($stmtProd, "i", $id);
         mysqli_stmt_execute($stmtProd);
@@ -21,7 +18,6 @@ if (!$carrito_vacio) {
             $subtotal = $prod['precio'] * $cantidad_comprar;
             $total_carrito += $subtotal;
             
-            // Guardamos el detalle para renderizarlo en el HTML
             $productos_detalle[] = [
                 'id' => $id,
                 'nombre' => $prod['nombre'],
@@ -52,7 +48,7 @@ if (!$carrito_vacio) {
     </div>
 </nav>
 
-<div class="container bg-white p-4 rounded shadow-sm mt-4" style="max-width: 900px;">
+<div class="container p-4 rounded shadow-sm mt-4" style="max-width: 900px;">
     <h2 class="mb-4">🛒 Tu Carrito de Compras</h2>
 
     <?php if ($carrito_vacio): ?>
@@ -103,8 +99,6 @@ if (!$carrito_vacio) {
                 
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <a href="finalizar_compra.php" class="btn btn-success px-4 fw-bold">Confirmar y Pagar</a>
-                <?php else: ?>
-                    <a href="login.php" class="btn btn-danger">Iniciá sesión para pagar</a>
                 <?php endif; ?>
             </div>
         </div>

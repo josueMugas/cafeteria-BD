@@ -7,12 +7,18 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol']) || strcasecmp($_SES
 }
 
 include "conexion.php";
-
+if(isset($error)) echo "<div class='alert alert-danger'>$error</div>";
 if ($_POST) {
     $id = $_GET['id'];
     $nom = $_POST['nombre'];
     $pre = $_POST['precio'];
+    if ($pre < 0) {
+        $pre = 0;
+    }
     $cant = $_POST['cantidad'];
+    if ($cant < 0) {
+        $cant = 0;
+    }
     $stmt = mysqli_prepare($conexion, "CALL ActualizarProducto(?, ?, ?, ?)");
     mysqli_stmt_bind_param($stmt, "isdi", $id, $nom, $pre, $cant);
     

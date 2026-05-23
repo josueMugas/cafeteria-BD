@@ -5,49 +5,25 @@ include("conexion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
     $pass  = $_POST['pass'];
+    $sql = "SELECT id_usuario, contraseña, Rol FROM usuarios WHERE mail = '$email'";
+    $resultado = mysqli_query($conexion, $sql);
+    if ($usuario = mysqli_fetch_assoc($resultado)) {
+        if (password_verify($pass, $usuario['contraseña'])) {
+            $_SESSION['usuario'] = $email;
+            $_SESSION['rol']     = $usuario['Rol'] ?? 'Cliente';
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
 
-    $stmt = mysqli_prepare($conexion, "SELECT id_usuario, contraseña, Rol, nombre, domicilio FROM usuarios WHERE mail = ? LIMIT 1");
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $id_usuario, $hash_db, $rol, $nombre, $domicilio);
-
-        if (mysqli_stmt_fetch($stmt)) {
-            if (password_verify($pass, $hash_db)) {
-                $_SESSION['usuario'] = $email;
-                $_SESSION['rol']     = $rol ?: 'Cliente';
-                $_SESSION['id_usuario'] = $id_usuario;
-                $_SESSION['nombre'] = $nombre;
-
-                $subject = "Inicio de sesión exitoso";
-                $message = "Hola $nombre,\n\n" .
-                           "Has iniciado sesión correctamente en tu cuenta.\n\n" .
-                           "Tus datos de usuario:\n" .
-                           "- ID: $id_usuario\n" .
-                           "- Email: $email\n" .
-                           "- Rol: $rol\n" .
-                           "- Domicilio: $domicilio\n\n" .
-                           "Si no fuiste tú, por favor contacta con el soporte.";
-                $headers = "From: no-reply@localhost\r\n" .
-                           "Content-Type: text/plain; charset=UTF-8\r\n";
-                mail($email, $subject, $message, $headers);
-
-                if (strcasecmp($_SESSION['rol'], 'Admin') === 0) {
-                    header("Location: Admin.php");
-                } else {
-                    header("Location: index.php");
-                }
-                mysqli_stmt_close($stmt);
-                exit();
+            if (strcasecmp($_SESSION['rol'], 'Admin') === 0) {
+                header("Location: Admin.php");
             } else {
-                $error = "Contraseña incorrecta";
+                header("Location: index.php");
             }
+            exit();
         } else {
-            $error = "El correo electrónico no está registrado";
+            $error = "Contraseña incorrecta";
         }
-        mysqli_stmt_close($stmt);
     } else {
-        $error = "Error interno al preparar la consulta";
+        $error = "El correo electrónico no está registrado";
     }
 }
 ?>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario']) || !isset($_SESSION['rol']) || strcasecmp($_SES
     header("Location: index.php");
     exit();
 }
-$cat_filtro = isset($_GET['cat_filtro']) ? $_GET['cat_filtro'] : '';
+$cat_filtro = isset($_GET['categoria']) ? $_GET['categoria'] : '';
 
 $sql = "SELECT * FROM productos";
 if ($cat_filtro != '') {
@@ -54,16 +54,12 @@ $res = mysqli_query($conexion, $sql);
     <div class="d-flex justify-content-between mb-3">
         <a href="crear.php" class="btn btn-success">+ Agregar</a>
         
-        <!-- Filtro Rápido -->
-        <form method="GET" class="d-flex gap-2">
-            <select name="cat_filtro" class="form-select shadow-sm">
-                <option value="">todos.</option>
-                <option value="café">Café</option>
-                <option value="Pastelería">Pastelería</option>
-                <option value="Salado">Salado</option>
-            </select>
-            <button type="submit" class="btn btn-primary">Ver</button>
-        </form>
+        <div class="btn-group" role="group">
+        <a href="Admin.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
+        <a href="Admin.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
+        <a href="Admin.php?categoria=Pastelería" class="btn btn-sm <?php echo $categoria_seleccionada == 'Pastelería' ? 'btn-dark' : 'btn-outline-dark'; ?>">Pastelería</a>
+        <a href="Admin.php?categoria=Salado" class="btn btn-sm <?php echo $categoria_seleccionada == 'Salado' ? 'btn-dark' : 'btn-outline-dark'; ?>">Salado</a>
+    </div>
     </div>
 
     <table class="table table-hover bg-white rounded shadow-sm">
