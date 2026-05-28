@@ -7,6 +7,9 @@
     --blanco: #ffffff;
     --gris-suave: #f8f9fa;
 }
+select{
+    margin: 2%;
+}
 .container{
     border-radius: 20px;
     margin-top: 10%;

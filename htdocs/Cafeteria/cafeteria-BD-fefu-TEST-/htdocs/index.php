@@ -13,6 +13,14 @@ if ($categoria_seleccionada != '') {
     $sql .= " WHERE categoria = '" . mysqli_real_escape_string($conexion, $categoria_seleccionada) . "'";
 }
 $res = mysqli_query($conexion, $sql);
+if (isset($_SESSION['usuario'])){
+$id_usuario = $_SESSION['id_usuario'];
+$sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
+$resActual = mysqli_query($conexion, $sqlActual);
+if ($u = mysqli_fetch_assoc($resActual)) {
+    $saldo_actual = $u['fondos'];
+}
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,19 +41,11 @@ $res = mysqli_query($conexion, $sql);
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">☕ Mi Cafetería</a>
         <div class="d-flex">
-            <?php if(isset($_SESSION['usuario'])):
-                
-                ?>
-                
+            <?php if(isset($_SESSION['usuario'])): ?>
+                <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></span>
                 <?php if(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Admin') === 0): ?>
                     <a href="Admin.php" class="btn btn-outline-light me-2">Panel Admin</a>
-                <?php elseif(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Cliente') === 0):
-                 $id_usuario = $_SESSION['id_usuario'];
-                $sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
-                $resActual = mysqli_query($conexion, $sqlActual);
-                $u = mysqli_fetch_assoc($resActual);
-                    $saldo_actual = $u['fondos'];?>
-                    <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></span>
+                <?php elseif(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Cliente') === 0): ?>
                     <a href="ver_carrito.php" class="btn btn-outline-light me-2">🛒 Carrito (<?php echo isset($_SESSION['carrito']) ? array_sum($_SESSION['carrito']) : 0; ?>)</a>
                     <a href="AgregarSaldo.php" class="btn btn-outline-light me-2">Agregar Saldo</a>
                 <?php endif; ?>
@@ -58,13 +58,11 @@ $res = mysqli_query($conexion, $sql);
     </div>
 </nav>
 
-<div class="container shadow-none mb-5" style="max-width: 1200px; margin-top: 20px">
-    <br>
-    <h1 class="text-center" style="text-shadow: 2px 2px 4px color:#6f4e37var(--cafe-oscuro); font-family: 'Times New Roman', Times, serif;'">Nuestra Carta</h1>
+<div class="container shadow-none mb-5" style="max-width: 1200px; margin-top: 20px;">
+    <h1 class="text-white mb-4 text-center" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Nuestra Carta</h1>
     <div class="btn-group" role="group">
         <a href="index.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
-        <a href="index.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'Café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
-        <a href="index.php?categoria=Bebidas" class="btn btn-sm <?php echo $categoria_seleccionada == 'Bebidas' ? 'btn-dark' : 'btn-outline-dark'; ?>">Bebidas</a>
+        <a href="index.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
         <a href="index.php?categoria=Pastelería" class="btn btn-sm <?php echo $categoria_seleccionada == 'Pastelería' ? 'btn-dark' : 'btn-outline-dark'; ?>">Pastelería</a>
         <a href="index.php?categoria=Salado" class="btn btn-sm <?php echo $categoria_seleccionada == 'Salado' ? 'btn-dark' : 'btn-outline-dark'; ?>">Salado</a>
     </div>

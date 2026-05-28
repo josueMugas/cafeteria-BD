@@ -49,14 +49,16 @@ $res = mysqli_query($conexion, $sql);
 </nav>
 <div style="margin-top: 80px;"></div>
     <div class="container">
-    <h1>Gestión de Productos</h1>
+        <br>
+    <h1 style= "font-family: 'Times New Roman', Times, serif;'">Gestión de Productos</h1>
     
     <div class="d-flex justify-content-between mb-3">
         <a href="crear.php" class="btn btn-success">+ Agregar</a>
         
         <div class="btn-group" role="group">
         <a href="Admin.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
-        <a href="Admin.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
+        <a href="Admin.php?categoria=Café" class="btn btn-sm <?php echo $categoria_seleccionada == 'Café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
+        <a href="Admin.php?categoria=Bebidas" class="btn btn-sm <?php echo $categoria_seleccionada == 'Bebidas' ? 'btn-dark' : 'btn-outline-dark'; ?>">Bebidas</a>
         <a href="Admin.php?categoria=Pastelería" class="btn btn-sm <?php echo $categoria_seleccionada == 'Pastelería' ? 'btn-dark' : 'btn-outline-dark'; ?>">Pastelería</a>
         <a href="Admin.php?categoria=Salado" class="btn btn-sm <?php echo $categoria_seleccionada == 'Salado' ? 'btn-dark' : 'btn-outline-dark'; ?>">Salado</a>
     </div>

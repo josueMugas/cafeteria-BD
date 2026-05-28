@@ -57,7 +57,7 @@ if($_POST){
 
     $sql = "INSERT INTO productos (nombre, precio, cantidad, IMG,categoria) VALUES ('$nom', '$pre', '$cant', '$imgNombre','$cat')";
     mysqli_query($conexion, $sql);
-    header("Location: clientes.php");
+    header("Location: Admin.php");
 }
 ?>
 <!DOCTYPE html>
@@ -71,12 +71,19 @@ if($_POST){
     <form method="POST" enctype="multipart/form-data" class="container" style="max-width: 500px; background-color: #f5f5dc; padding: 30px; border-radius: 15px;">
         <h3>Nuevo Producto</h3>
         <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" required>
-        <input type="text" name="categoria" placeholder="Categoria" class="form-control mb-2" required>
-        <input type="number" class="form-control mb-2"onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189"placeholder=" $ Precio" required>
-        <input type="number" name="cantidad" pattern="[0-9]*" placeholder="Stock Inicial" class="form-control mb-2" required>
+        <label for="Categoria">Elige una Categoria:</label>
+        <select id="categoria" name="categoria">
+            <option selected value="Café">Café</option>
+            <option value="Bebidas" >Bebidas</option>
+            <option value="Salado">Salado</option>
+            <option value="Pasteleria">Pasteleria</option>
+        </select>
+        <label></label>
+        <input type="number" name="precio" class="form-control mb-2"onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189"placeholder=" $ Precio" required>
+        <input type="number" name="cantidad" pattern="[0-9]*" placeholder="Stock Inicial" class="form-control mb-2" required onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189">
         <input type="file" name="foto" class="form-control mb-3" required>
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="clientes.php">Cancelar</a>
+        <a href="Admin.php">Cancelar</a>
     </form>
 </body>
 </html>

@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form method="POST">
                     <div class="mb-3">
                         <label class="form-label">Tu saldo disponible es: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></label>
-                        <input type="number" name="cantidad" class="form-control text-center fs-5" min="1" placeholder="¿Cuánto deseas cargar?" required>
+                        <input type="number" name="cantidad" class="form-control text-center fs-5" min="1" onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189" placeholder="¿Cuánto deseas cargar?" required>
                     </div>
                     <button type="submit" class="btn text-white w-100 fs-5" style="background-color: var(--cafe-medio);">💳 Cargar Dinero</button>
                 </form>

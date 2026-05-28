@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
         <input name="precio" type="number" step="0.01" class="form-control mb-2" onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189 || event.keyCode === 190 || event.keyCode === 110" value="<?php echo $producto['precio']; ?>" required>
         
         <label class="form-label">Stock / Cantidad disponible</label>
-        <input name="cantidad" type="number" class="form-control mb-3" value="<?php echo $producto['cantidad']; ?>" required>
+        <input name="cantidad" type="number" class="form-control mb-3" onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189" value="<?php echo $producto['cantidad']; ?>" required>
         
         <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
         <a href="Admin.php" class="btn btn-secondary w-100 mt-2">Cancelar</a>

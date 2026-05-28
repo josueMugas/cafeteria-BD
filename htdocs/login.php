@@ -36,6 +36,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="sa.css">
 </head>
 <body>
+    
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--cafe-oscuro); z-index: 1030;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.php">☕ Mi Cafetería</a>
+        
+        <div class="d-flex">
+            <?php if(isset($_SESSION['usuario'])): ?>
+                <?php 
+                $pagina_actual = basename($_SERVER['PHP_SELF']);
+                if($pagina_actual == 'index.php'): ?>
+                    <a href="Admin.php" class="btn btn-outline-light me-2">Ir a Gestión de Productos</a>
+                <?php else: ?>
+                    <a href="index.php" class="btn btn-outline-light me-2">Ver Menú Principal</a>
+                <?php endif; ?>
+                
+                <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
+            <?php else: ?>
+                <a href="login.php" class="btn btn-outline-light me-2">Iniciar Sesión</a>
+                <a href="registro.php" class="btn btn-secondary">Registrarse</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
     <div class="container">
         <form method="POST" class="p-4">
             <h2 class="mb-4">Ingreso de Clientes</h2>
