@@ -11,8 +11,6 @@ if (!isset($_SESSION['usuario']) || (isset($_SESSION['rol']) && strcasecmp($_SES
 }
 
 $mensaje_exito = "";
-$saldo_actual = 0;
-
 $id_usuario = $_SESSION['id_usuario'];
 $sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
 $resActual = mysqli_query($conexion, $sqlActual);
@@ -48,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body style="padding-top: 90px;">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--cafe-oscuro); z-index: 1030;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">☕ Mi Cafetería</a>
+                <a class="navbar-brand" href="index.php" style="font-family: 'Times New Roman', 'Times, serif';">☕ Mi Cafetería</a>
                 <div class="d-flex">
                     <?php if(isset($_SESSION['usuario'])): ?>
                         <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></span>
@@ -68,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
         <div class="container bg-transparent shadow-none" style="max-width: 500px; margin-top: 50px;">
             <div class="card p-4 shadow border-0 bg-light text-dark text-center">
-                <h2 class="mb-4">Agregar Saldo</h2>
+                <h2 class="mb-4" style="font-family: 'Times New Roman', 'Times, serif';">Agregar Saldo</h2>
                 
                 <?php if (!empty($mensaje_exito)): ?>
                     <div class="alert alert-success"><?php echo $mensaje_exito; ?></div>

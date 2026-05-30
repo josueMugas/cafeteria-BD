@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body><br>
 <div class="container"> 
     <br>
-    <h2>Deja tu reseña</h2>
+    <h2 style="font-family: 'Times New Roman', 'Times, serif';">Deja tu reseña</h2>
     <?php if(isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
     <form method="POST">
         <div class="conform-group">

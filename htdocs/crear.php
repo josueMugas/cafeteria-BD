@@ -65,13 +65,13 @@ if($_POST){
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="sa.css">
-    <title>Agregar Producto</title>
+    <title >Agregar Producto</title>
 </head>
 <body class="p-5" style="background-color:  #f5f5dc;"  >
     <form method="POST" enctype="multipart/form-data" class="container" style="max-width: 500px; background-color: #f5f5dc; padding: 30px; border-radius: 15px;">
-        <h3>Nuevo Producto</h3>
+        <h3 style="font-family: 'Times New Roman', 'Times, serif';">Nuevo Producto</h3>
         <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" required>
-        <label for="Categoria">Elige una Categoria:</label>
+        <label for="Categoria" style="font-family: 'Times New Roman', 'Times, serif'; font-size: 115%;">Elige una Categoria:</label>
         <select id="categoria" name="categoria">
             <option selected value="Café">Café</option>
             <option value="Bebidas" >Bebidas</option>

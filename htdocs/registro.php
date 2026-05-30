@@ -93,7 +93,7 @@ if (isset($_GET['error'])) {
     <div class="container" style="max-width: 500px; margin-top: 50px;" >
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h2 class="text-center mb-4">☕ Nuevo Cliente</h2>
+                <h2 class="text-center mb-4" style="font-family: 'Times New Roman', 'Times, serif';">☕ Nuevo Cliente</h2>
                 <form action="registro.php" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Nombre Completo</label>

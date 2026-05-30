@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
 </head>
 <body class="p-5" style="background-color: #f5f5dc;">
     <form method="POST" enctype="multipart/form-data" class="container" style="max-width: 500px; background-color: #f5f5dc; padding: 30px; border-radius: 15px;">
-        <h3>Editar Producto</h3>
+        <h3 style="font-family: 'Times New Roman', 'Times, serif';">Editar Producto</h3>
         
         <label class="form-label">Nombre del Producto</label>
         <input type="text" name="nombre" class="form-control mb-2" value="<?php echo htmlspecialchars($producto['nombre']); ?>" required>

@@ -31,19 +31,21 @@ $res = mysqli_query($conexion, $sql);
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--cafe-oscuro); z-index: 1030;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">☕ Mi Cafetería</a>
+        <a class="navbar-brand" href="index.php" style="font-family: 'Times New Roman', 'Times, serif';">☕ Mi Cafetería</a>
         <div class="d-flex">
-            <?php if(isset($_SESSION['usuario'])):
-                
-                ?>
-                
-                <?php if(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Admin') === 0): ?>
+            <?php if(isset($_SESSION['usuario'])):?>
+                <div class="d-flex">
+                    <a href="editar_perfil.php" class="btn btn-outline-light me-2 d-flex align-items-center " style="font-family: 'Times New Roman', 'Times, serif';"title="Editar Perfil">
+                        🙍‍♂️ <?php echo htmlspecialchars($_SESSION['cuenta']); ?>
+                    </a>
+                    <?php
+                if(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Admin') === 0): ?>
                     <a href="Admin.php" class="btn btn-outline-light me-2">Panel Admin</a>
                 <?php elseif(isset($_SESSION['rol']) && strcasecmp($_SESSION['rol'], 'Cliente') === 0):
-                 $id_usuario = $_SESSION['id_usuario'];
-                $sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
-                $resActual = mysqli_query($conexion, $sqlActual);
-                $u = mysqli_fetch_assoc($resActual);
+                    $id_usuario = $_SESSION['id_usuario'];
+                    $sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
+                    $resActual = mysqli_query($conexion, $sqlActual);
+                    $u = mysqli_fetch_assoc($resActual);
                     $saldo_actual = $u['fondos'];?>
                     <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></span>
                     <a href="ver_carrito.php" class="btn btn-outline-light me-2">🛒 Carrito (<?php echo isset($_SESSION['carrito']) ? array_sum($_SESSION['carrito']) : 0; ?>)</a>
@@ -60,7 +62,7 @@ $res = mysqli_query($conexion, $sql);
 
 <div class="container shadow-none mb-5" style="max-width: 1200px; margin-top: 20px">
     <br>
-    <h1 class="text-center" style="text-shadow: 2px 2px 4px color:#6f4e37var(--cafe-oscuro); font-family: 'Times New Roman', Times, serif;'">Nuestra Carta</h1>
+    <h1 class="text-center" style="text-shadow: 2px 2px 4px color:#6f4e37var(--cafe-oscuro); font-family: 'Times New Roman', 'Times, serif';">Nuestra Carta</h1>
     <div class="btn-group" role="group">
         <a href="index.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
         <a href="index.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'Café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
@@ -74,7 +76,7 @@ $res = mysqli_query($conexion, $sql);
             <div class="card h-100 shadow-sm">
                 <img src="Imagenes/<?php echo htmlspecialchars($p['IMG']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($p['nombre']); ?>" onerror="this.src='Imagenes/default.jpg';">
                 <div class="card-body">
-                    <h5 class="card-title text-dark fw-bold"><?php echo htmlspecialchars($p['nombre']); ?></h5>
+                    <h5 class="card-title text-dark fw-bold" style="font-family: 'Times New Roman', 'Times, serif';"><?php echo htmlspecialchars($p['nombre']); ?></h5>
                     <span class="badge bg-secondary mb-2"><?php echo htmlspecialchars($p['categoria']); ?></span>
                     <p class="card-text text-dark fs-5">Precio: <strong>$<?php echo number_format($p['precio'], 2); ?></strong></p>
                     <p class="text-muted small">Disponibles: <?php echo $p['cantidad']; ?></p>

@@ -5,10 +5,11 @@ include("conexion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
     $pass  = $_POST['pass'];
-    $sql = "SELECT id_usuario, contraseña, Rol FROM usuarios WHERE mail = '$email'";
+    $sql = "SELECT nombre, id_usuario, contraseña, Rol FROM usuarios WHERE mail = '$email'";
     $resultado = mysqli_query($conexion, $sql);
     if ($usuario = mysqli_fetch_assoc($resultado)) {
         if (password_verify($pass, $usuario['contraseña'])) {
+            $_SESSION['cuenta'] = $usuario['nombre'];
             $_SESSION['usuario'] = $email;
             $_SESSION['rol']     = $usuario['Rol'] ?? 'Cliente';
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </nav>
     <div class="container">
         <form method="POST" class="p-4">
-            <h2 class="mb-4">Ingreso de Clientes</h2>
+            <h2 class="mb-4" style="font-family: 'Times New Roman', 'Times, serif';">Ingreso de Clientes</h2>
             <?php if(isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
             <label>Correo Electrónico</label>
             <input type="email" name="email" required>

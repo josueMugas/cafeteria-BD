@@ -27,10 +27,13 @@ $res = mysqli_query($conexion, $sql);
 <body >
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--cafe-oscuro); z-index: 1030;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">☕ Mi Cafetería</a>
-        
+        <a class="navbar-brand" href="index.php"style="font-family: 'Times New Roman', 'Times, serif';">☕ Mi Cafetería</a>
         <div class="d-flex">
             <?php if(isset($_SESSION['usuario'])): ?>
+                <div class="d-flex">
+                    <a href="editar_perfil.php" style="font-family: 'Times New Roman', 'Times, serif';"class="btn btn-outline-light me-2 d-flex align-items-center" title="Editar Perfil">
+                        🙍‍♂️ <?php echo htmlspecialchars($_SESSION['cuenta']); ?>
+                    </a>
                 <?php 
                 $pagina_actual = basename($_SERVER['PHP_SELF']);
                 if($pagina_actual == 'index.php'): ?>

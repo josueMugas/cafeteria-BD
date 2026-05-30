@@ -13,11 +13,9 @@ if (!$carrito_vacio) {
         mysqli_stmt_bind_param($stmtProd, "i", $id);
         mysqli_stmt_execute($stmtProd);
         $resProd = mysqli_stmt_get_result($stmtProd);
-
         if ($prod = mysqli_fetch_assoc($resProd)) {
             $subtotal = $prod['precio'] * $cantidad_comprar;
             $total_carrito += $subtotal;
-            
             $productos_detalle[] = [
                 'id' => $id,
                 'nombre' => $prod['nombre'],
@@ -49,7 +47,7 @@ if (!$carrito_vacio) {
 </nav>
 
 <div class="container p-4 rounded shadow-sm mt-4" style="max-width: 900px;">
-    <h2 class="mb-4">🛒 Tu Carrito de Compras</h2>
+    <h2 class="mb-4" style="font-family: 'Times New Roman', 'Times, serif';">🛒 Tu Carrito de Compras</h2>
 
     <?php if ($carrito_vacio): ?>
         <div class="alert alert-warning text-center my-4">
