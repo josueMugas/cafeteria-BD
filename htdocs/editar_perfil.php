@@ -6,17 +6,11 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-
 $error = '';
 $exito = '';
 $id_usuario = $_SESSION['id_usuario'];
 $email = $_SESSION['usuario'];
-
-// Obtener datos actuales
-$sql = "SELECT nombre FROM usuarios WHERE id_usuario = $id_usuario";
-$res = mysqli_query($conexion, $sql);
-$usuario = mysqli_fetch_assoc($res);
-$nombre_actual = $usuario['nombre'];
+$nombre_actual = $_SESSION['cuenta'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nuevo_nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);

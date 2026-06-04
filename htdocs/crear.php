@@ -54,9 +54,9 @@ if($_POST){
         $error = "No se pudo guardar la imagen."    ;
         header("Location: crear.php?error=" . urlencode($error));
     }
-    $stmtInsert = mysqli_prepare($conexion, "CALL Insertarproducto(?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmtInsert, "ssdss", $nom, $cant, $pre, $imgNombre, $cat);
-     mysqli_stmt_execute($stmtInsert);
+
+    $sql = "CALL InsertarProductos('$nom', '$pre', '$cant', '$imgNombre', '$cat')";
+    mysqli_query($conexion, $sql);
     header("Location: Admin.php");
 }
 ?>

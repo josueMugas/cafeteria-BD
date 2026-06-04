@@ -51,6 +51,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarCliente` (IN `c_nom` VARCHA
     VALUES (c_nom, c_mail, c_contra, c_dom, 'Cliente');
 END$$
 
+DROP PROCEDURE IF EXISTS `InsertarProductos`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarProductos` (IN `p_nom` VARCHAR(50), IN `p_precio` DECIMAL(10,2), IN `p_cantidad` INT, IN `p_IMG` VARCHAR(255), IN `p_categoria` VARCHAR(50))   BEGIN
+    INSERT INTO productos (nombre, precio, cantidad, IMG, categoria) 
+    VALUES (p_nom, p_precio, p_cantidad, p_IMG, p_categoria);
+END$$
+
 DROP PROCEDURE IF EXISTS `ObtenerInfoProducto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerInfoProducto` (IN `p_id_producto` INT)   BEGIN
     SELECT nombre, precio 

@@ -62,7 +62,7 @@ $res = mysqli_query($conexion, $sql);
 
 <div class="container shadow-none mb-5" style="max-width: 1200px; margin-top: 20px">
     <br>
-    <h1 class="text-center" style="text-shadow: 2px 2px 4px color:#6f4e37var(--cafe-oscuro); font-family: 'Times New Roman', 'Times, serif';">Nuestra Carta</h1>
+    <h1 class="text-center" style="text-shadow: 2px 2px 4px, color:#6f4e37, font-family: 'Times New Roman', 'Times, serif';">Nuestra Carta</h1>
     <div class="btn-group" role="group">
         <a href="index.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
         <a href="index.php?categoria=café" class="btn btn-sm <?php echo $categoria_seleccionada == 'Café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>

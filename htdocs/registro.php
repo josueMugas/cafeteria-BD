@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['pass'];
     $domicilio = mysqli_real_escape_string($conexion, $_POST['domicilio']);
 
-    $stmtCheck = mysqli_prepare($conexion, "SELECT id_usuario FROM usuarios WHERE mail = ? LIMIT 1");
+    $stmtCheck = mysqli_prepare($conexion, "SELECT * FROM usuarios WHERE mail = ? LIMIT 1");
     mysqli_stmt_bind_param($stmtCheck, "s", $email);
     mysqli_stmt_execute($stmtCheck);
     mysqli_stmt_store_result($stmtCheck);
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['usuario'] = $email;
         $_SESSION['rol'] = 'Cliente';
         $_SESSION['id_usuario'] = $nuevoId;
-
+        $_SESSION["cuenta"]=$nombre;
         $subject = "Registro exitoso en Cafetería";
         $message = "Hola $nombre,\n\n" .
                    "Gracias por registrarte en nuestra Cafetería. Aquí están tus datos de usuario:\n\n" .
@@ -90,10 +90,13 @@ if (isset($_GET['error'])) {
         </div>
     </div>
 </nav>
-    <div class="container" style="max-width: 500px; margin-top: 50px;" >
+    <div class="container" style="max-width: 500px; margin-top: 5%;" >
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h2 class="text-center mb-4" style="font-family: 'Times New Roman', 'Times, serif';">☕ Nuevo Cliente</h2>
+                <h2 class="text-center  mt-4" style="font-family: 'Times New Roman', 'Times, serif';">☕ Nuevo Cliente</h2>
+                <?php if (isset($error) && !empty($error)): ?>
+                    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+                <?php endif; ?>
                 <form action="registro.php" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Nombre Completo</label>
@@ -116,7 +119,7 @@ if (isset($_GET['error'])) {
                     </div>
                     <button type="submit">Registrar y Ver Menú</button>
                     <p class="mt-3 text-center">¿Ya tienes cuenta?</p>
-                    <a style ="margin-left: 30%;margin-buttom: 30% "href="login.php">Login aquí</a>
+                    <a style ="margin-left: 30% "href="login.php">Login aquí</a>
                 </form><script src="script1.js"></script>
                 <br>
             </div>
