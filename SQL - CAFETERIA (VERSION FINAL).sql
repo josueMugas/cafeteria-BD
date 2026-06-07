@@ -63,7 +63,7 @@ INSERT INTO `usuarios` (`nombre_completo`, `mail`, `contraseña`, `domicilio`) V
 ('Ana Torres', 'ana.t@email.com', 'ana2024', 'Boulevard Central 789'),
 ('Lucía Gómez', 'lucia.g@email.com', 'lucia_psw', 'Pasaje Olivos 12');
 
-INSERT INTO `clientes` (`id_usuario`, `saldo`) VALUES 
+INSERT INTO `clientes` (`id_usuario`, `fondos`) VALUES 
 (1, 5000.00), 
 (3, 0.00), 
 (5, 1200.50);
