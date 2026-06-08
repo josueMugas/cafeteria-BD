@@ -47,7 +47,7 @@ $res = mysqli_query($conexion, $sql);
                     $resActual = mysqli_query($conexion, $sqlActual);
                     $u = mysqli_fetch_assoc($resActual);
                     $saldo_actual = $u['fondos'];?>
-                    <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($saldo_actual, 2); ?></strong></span>
+                    <span class="navbar-text text-white me-3 align-self-center">Saldo: <strong>$<?php echo number_format($_SESSION["saldo"], 2); ?></strong></span>
                     <a href="ver_carrito.php" class="btn btn-outline-light me-2">🛒 Carrito (<?php echo isset($_SESSION['carrito']) ? array_sum($_SESSION['carrito']) : 0; ?>)</a>
                     <a href="AgregarSaldo.php" class="btn btn-outline-light me-2">Agregar Saldo</a>
                 <?php endif; ?>

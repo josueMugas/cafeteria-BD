@@ -65,6 +65,7 @@ $res = mysqli_query($conexion, $sql);
                 ?>
             </tbody>
         </table>
+        <br>
     </div>
 </body>
 </html>

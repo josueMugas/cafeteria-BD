@@ -9,15 +9,16 @@ if (!isset($_SESSION['usuario']) || (isset($_SESSION['rol']) && strcasecmp($_SES
     header("Location: index.php");
     exit();
 }
-
+$saldo_actual = $_SESSION["saldo"] ;
 $mensaje_exito = "";
+
+
 $id_usuario = $_SESSION['id_usuario'];
 $sqlActual = "SELECT fondos FROM clientes WHERE id_usuario = $id_usuario";
 $resActual = mysqli_query($conexion, $sqlActual);
 if ($u = mysqli_fetch_assoc($resActual)) {
     $saldo_actual = $u['fondos'];
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cantidad = intval($_POST['cantidad']);
     
@@ -28,11 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $resActual = mysqli_query($conexion, $sqlActual);
             if ($u = mysqli_fetch_assoc($resActual)) {
                 $saldo_actual = $u['fondos'];
+                $_SESSION["saldo"] = $saldo_actual;
             }
+            $saldo_actual = $u['fondos'];
+                $_SESSION["saldo"] = $saldo_actual;
             $mensaje_exito = "¡Saldo agregado con éxito! Tu saldo actual es: $" . number_format($saldo_actual, 2);
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

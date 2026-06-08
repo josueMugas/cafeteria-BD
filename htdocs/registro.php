@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['rol'] = 'Cliente';
         $_SESSION['id_usuario'] = $nuevoId;
         $_SESSION["cuenta"]=$nombre;
+        $_SESSION["saldo"] = 0;
         $subject = "Registro exitoso en Cafetería";
         $message = "Hola $nombre,\n\n" .
                    "Gracias por registrarte en nuestra Cafetería. Aquí están tus datos de usuario:\n\n" .
@@ -45,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mail($email, $subject, $message, $headers);
 
         mysqli_stmt_close($stmtInsert);
-        header('Location: index.php');
+        header('Location: login.php');
         exit();
     } else {
         $error = "Error al registrar el cliente: " . mysqli_error($conexion);

@@ -5,7 +5,7 @@ include("conexion.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conexion, $_POST['email']);
     $pass  = $_POST['pass'];
-    $sql = "SELECT nombre, id_usuario, contraseña, Rol FROM usuarios WHERE mail = '$email'";
+    $sql = "SELECT * FROM usuarios WHERE mail = '$email'";
     $resultado = mysqli_query($conexion, $sql);
     if ($usuario = mysqli_fetch_assoc($resultado)) {
         if (password_verify($pass, $usuario['contraseña'])) {
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usuario'] = $email;
             $_SESSION['rol']     = $usuario['Rol'] ?? 'Cliente';
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
-
+            $_SESSION["saldo"] = $usuario['fondos'];
             if (strcasecmp($_SESSION['rol'], 'Admin') === 0) {
                 header("Location: Admin.php");
             } else {
