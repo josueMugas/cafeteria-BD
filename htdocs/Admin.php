@@ -57,7 +57,7 @@ $res = mysqli_query($conexion, $sql);
     
     <div class="d-flex justify-content-between mb-3">
         <a href="crear.php" class="btn btn-success">+ Agregar</a>
-        
+        <a href="ver_pedidos.php" class="btn btn-success">pedidos</a>
         <div class="btn-group" role="group">
         <a href="Admin.php" class="btn btn-sm <?php echo $categoria_seleccionada == '' ? 'btn-dark' : 'btn-outline-dark'; ?>">Todos</a>
         <a href="Admin.php?categoria=Café" class="btn btn-sm <?php echo $categoria_seleccionada == 'Café' ? 'btn-dark' : 'btn-outline-dark'; ?>">Café</a>
